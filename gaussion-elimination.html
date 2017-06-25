@@ -2,88 +2,80 @@
 <html>
 <head>
 	<title>Gaussian Ellimination method</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 <body>
-
+	<h1>Gaussian Ellimination method</h1>
 <textarea id="matrixInput" rows="5">
 3 6 3 24
 2 1 3 13
 3 2 4 19</textarea>
-<div id="result"></div>
+		<div id="result"></div>
 
-<script type="text/javascript">
-function clearContent(){
-document.getElementById("result").innerText = "";
-}
-	function writeMatrix(){
-		document.getElementById("result").innerText +="\n";
-		for (var i = 0; i < matrix.length; i++) {
-			var row = matrix[i];
-			for (var j = 0; j < row.length; j++) {
-				document.getElementById("result").innerHTML += row[j] + " "
-				if(j == row.length-2){
-					document.getElementById("result").innerHTML += " = "
+		<script type="text/javascript">
+			function clearContent(){
+				document.getElementById("result").innerText = "";
+			}
+			function writeMatrix(){
+				document.getElementById("result").innerText +="\n";
+				for (var i = 0; i < matrix.length; i++) {
+					var row = matrix[i];
+					for (var j = 0; j < row.length; j++) {
+						document.getElementById("result").innerHTML += row[j] + " "
+						if(j == row.length-2){
+							document.getElementById("result").innerHTML += " = "
+						}
+					}
+					document.getElementById("result").innerText += "\n"
 				}
 			}
-			document.getElementById("result").innerText += "\n"
-			// document.getElementById("result").innerText += JSON.stringify(matrix[i]) + "\n";
-		}
-	}
 
-	function calcRows(row1, row2, id){
-		var result = [];
-		for (var i = 0; i < row1.length; i++) {
-			var row1Res = row1[id] * row2[i];
-			var row2Res = row2[id] * row1[i];
-			result.push(row1Res - row2Res);
-		}  
-		return result;
-	}
-
-	function calculateMatrix(){
-		clearContent()
-		writeMatrix()
-		var runner = 0;
-		while(runner+1 < matrix.length){
-			for (var i = runner+1; i < matrix.length; i++) {
-				matrix[i] = calcRows(matrix[runner], matrix[i], runner);
+			function calcRows(row1, row2, id){
+				var result = [];
+				for (var i = 0; i < row1.length; i++) {
+					var row1Res = row1[id] * row2[i];
+					var row2Res = row2[id] * row1[i];
+					result.push(row1Res - row2Res);
+				}  
+				return result;
 			}
-			runner++;
-		}
-		writeMatrix()
-	}
 
-
-	// function calcRow(lastRow){
-	// 	console.log(
-	// 		lastRow[lastRow.length-1] / lastRow[lastRow.length-2]
-	// 		);
-	// }
-	// calcRow(matrix[matrix.length-1]);
-	
-
-	
-	function stringToMatrix(str){
-		var result = str.trim().split("\n");
-		for (var i = 0; i < result.length; i++) {
-			result[i] = result[i].split(" ");
-			for (var j = 0; j < result[i].length; j++) {
-				result[i][j] = JSON.parse(result[i][j]);
+			function calculateMatrix(){
+				clearContent()
+				writeMatrix()
+				var runner = 0;
+				while(runner+1 < matrix.length){
+					for (var i = runner+1; i < matrix.length; i++) {
+						matrix[i] = calcRows(matrix[runner], matrix[i], runner);
+					}
+					runner++;
+				}
+				writeMatrix()
 			}
-		}
-		console.log(result);
-		return result;
-	}
-	var matrix = [];
-	document.getElementById('matrixInput').onkeyup = function(){
-		matrix = stringToMatrix(document.getElementById("matrixInput").value);
-		debugger;
-		calculateMatrix()
-	}
-	matrix = stringToMatrix(document.getElementById("matrixInput").value);
-		debugger;
-		calculateMatrix()
-</script>
 
-</body>
-</html>
+			function stringToMatrix(str){
+				var result = str.trim().split("\n");
+				for (var i = 0; i < result.length; i++) {
+					result[i] = result[i].split(" ");
+					for (var j = 0; j < result[i].length; j++) {
+						result[i][j] = JSON.parse(result[i][j]);
+					}
+				}
+				console.log(result);
+				return result;
+			}
+			var matrix = [];
+			document.getElementById('matrixInput').onkeyup = function(){
+				matrix = stringToMatrix(document.getElementById("matrixInput").value);
+				debugger;
+				calculateMatrix()
+			}
+			matrix = stringToMatrix(document.getElementById("matrixInput").value);
+			debugger;
+			calculateMatrix()
+		</script>
+
+	</body>
+	</html>
