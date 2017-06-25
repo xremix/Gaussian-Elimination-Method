@@ -7,28 +7,33 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 <body>
-	<h1>Gaussian Ellimination method</h1>
-<textarea id="matrixInput" rows="5">
+	<div class="container">
+		<h1>Gaussian Ellimination method</h1>
+		<h3>Input</h3>
+			<textarea id="matrixInput" rows="5">
 3 6 3 24
 2 1 3 13
 3 2 4 19</textarea>
-		<div id="result"></div>
-
+			<h3>Matrix</h3>
+			<div id="result" class="jumbotron"></div>
+			<h3>Matrix in elminiated form</h3>
+			<div id="result2" class="jumbotron"></div>
+	</div>
 		<script type="text/javascript">
-			function clearContent(){
-				document.getElementById("result").innerText = "";
+			function clearContent(containerid){
+				document.getElementById(containerid).innerText = "";
 			}
-			function writeMatrix(){
-				document.getElementById("result").innerText +="\n";
+			function writeMatrix(containerid){
+				document.getElementById(containerid).innerText +="\n";
 				for (var i = 0; i < matrix.length; i++) {
 					var row = matrix[i];
 					for (var j = 0; j < row.length; j++) {
-						document.getElementById("result").innerHTML += row[j] + " "
+						document.getElementById(containerid).innerHTML += row[j] + " "
 						if(j == row.length-2){
-							document.getElementById("result").innerHTML += " = "
+							document.getElementById(containerid).innerHTML += " = "
 						}
 					}
-					document.getElementById("result").innerText += "\n"
+					document.getElementById(containerid).innerText += "\n"
 				}
 			}
 
@@ -43,8 +48,9 @@
 			}
 
 			function calculateMatrix(){
-				clearContent()
-				writeMatrix()
+				clearContent("result")
+				clearContent("result2")
+				writeMatrix("result")
 				var runner = 0;
 				while(runner+1 < matrix.length){
 					for (var i = runner+1; i < matrix.length; i++) {
@@ -52,7 +58,7 @@
 					}
 					runner++;
 				}
-				writeMatrix()
+				writeMatrix("result2")
 			}
 
 			function stringToMatrix(str){
