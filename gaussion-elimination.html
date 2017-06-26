@@ -45,7 +45,6 @@
 						document.getElementById(containerid).innerText = '';
 					},
 					writeMatrix: function(containerid, mtr){
-						document.getElementById(containerid).innerText +='\n';
 						for (var i = 0; i < mtr.length; i++) {
 							var row = mtr[i];
 							for (var j = 0; j < row.length; j++) {
@@ -60,7 +59,8 @@
 					writeResult: function(containerid, row){
 						for (var i = 0; i < row.length; i++) {
 							if (row[i]){
-								document.getElementById(containerid).innerText += 'x' + i + ' = ' + row[i] + '\n';	
+								var identifier = String.fromCharCode(97 + i);
+								document.getElementById(containerid).innerText += identifier + ' = ' + row[i] + '\n';	
 							}
 						}
 					},

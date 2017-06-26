@@ -14,16 +14,23 @@ Your Matrix must have the form:
 While `A` must be a `n * n` Matrix.
 The input must have `n+1` columns and `n` rows.
 
-The input for the Matrix
+If you want to calculate a matrix like this:
 ```
-x1+2x2+3x3=2
-x1+x2+x3 =2
-3x1+3x2+x3=0
+1a + 2b + 3c = 2
+1a + 1b + 1c = 2
+3a + 3b + 1c = 0
 ```
 
-Would be:
+Your input into the tool would be:
 ```
 1 2 3 2
 1 1 1 2
 3 3 1 0
+```
+
+The result of the tool then would be:
+```
+a = 5
+b = -6
+c = 3
 ```
