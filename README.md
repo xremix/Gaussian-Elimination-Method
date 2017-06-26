@@ -1,8 +1,8 @@
-# Gaussion-Elimination-Method
-Online Calculator for Matrixes. A website to calculate the result of a matrix based on the Gaussion Elimination Algorithm.
+# Gaussian-Elimination-Method
+Online Calculator for Matrixes. A website to calculate the result of a matrix based on the Gaussian Elimination Algorithm.
 
 Try the Tool here:
-[Online Tool](https://rawgit.com/xremix/Gaussion-Eliminiertation-Method/master/gaussion-elimination.html)
+[Online Tool](https://rawgit.com/xremix/Gaussian-Eliminiertation-Method/master/gaussian-elimination.html)
 
 ## Usage
 Enter your Matrix space seperated into the textfield, including the result vector.
