@@ -8,10 +8,10 @@
 <body>
 	<div class="container">
 		<h1>Gaussian Ellimination method</h1>
-		<div class="alert alert-info" role="alert">The Input should be a matrix of the format <i>A|b</i> - meaning that you need to input a <i>n * n+1</i> Matrix. Columns are seperated by spaces.</div>
+		<div class="alert alert-info" role="alert">The Input should be a matrix of the format <b>A|b</b> - meaning that you need to input a <b>n * n+1</b> Matrix. Columns are seperated by spaces.</div>
 		<div class="col-md-6">
 			<h3>Input</h3>
-			<textarea id="matrixInput" class="form-control" rows="5">
+			<textarea id="matrixInput" class="form-control" rows="8">
 3 6 3 24
 2 1 3 13
 3 2 4 19</textarea>
@@ -20,10 +20,14 @@
 				<h3>Matrix</h3>
 				<div id="result" class="jumbotron"></div>
 			</div>
-			<h3>Matrix in elminiated form</h3>
-			<div id="result2" class="jumbotron"></div>
-			<h3>Matrix Results</h3>
-			<div id="result3" class="jumbotron"></div>
+			<div class="col-xs-12">
+				<h3>Matrix in elminiated form</h3>
+				<div id="result2" class="jumbotron"></div>
+			</div>
+			<div class="col-xs-12">
+				<h3>Results</h3>
+				<div id="result3" class="jumbotron"></div>
+			</div>
 		</div>
 		<script type="text/javascript">
 			'use strict';
@@ -47,7 +51,7 @@
 					},
 					writeResult: function(containerid, row){
 						for (var i = 0; i < row.length; i++) {
-							if (row[i] != -1){
+							if (row[i]){
 								document.getElementById(containerid).innerText += 'x' + i + ' = ' + row[i] + '\n';	
 							}
 						}
@@ -63,7 +67,6 @@
 						}  
 						return result;
 					},
-
 					calculateMatrix: function(mtr){
 						gaussian.ui.clearContent('result');
 						gaussian.ui.clearContent('result2');
@@ -90,17 +93,24 @@
 						return result;
 					},
 					resolveMatrixResults: function(mtr){
-						var mtrResults = [];
-						// Set every result to -1
-						for (var i = 0; i < mtr.length; i++) {mtrResults.push(-1);}
+						var mtrResults = new Array(mtr[0].length-1);
+
 
 						for (var i = 1; i <= mtr.length; i++) {
-							var row = mtr[mtr.length-1]
-							mtrResults[mtrResults.length-1] = (row[row.length-1] / row[row.length-2]);
-							console.log(mtrResults);
-						}
 
-						debugger;
+							var row = mtr[mtr.length-i];
+							var rowResult = row[row.length-1];
+							var secondValue = row[row.length-i-1];
+							var additionalValue = 0;
+
+							for (var j = mtrResults.length - 1; j >= 0; j--) {
+								if(mtrResults[j]){
+									additionalValue += mtrResults[j] * row[j];
+								}
+							}
+
+							mtrResults[mtrResults.length-i] = (rowResult - additionalValue) / secondValue;
+						}
 						gaussian.ui.writeResult('result3', mtrResults);
 						return mtrResults;
 					}
