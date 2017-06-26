@@ -1,17 +1,15 @@
-# Gaussion-Eliminiertation-Method
-Sample Code to get a Matrix in the triangle format
+# Gaussion-Elimination-Method
+Online Calculator for Matrixes. A website to calculate the result of a matrix based on the Gaussion Elimination Algorithm.
 
-This isn't finished, but just a code sample, build from skretch.
-
-Visit the site here:
-[Demo](https://rawgit.com/xremix/Gaussion-Eliminiertation-Method/master/gaussion-elimination.html)
+Try the Tool here:
+[Online Tool](https://rawgit.com/xremix/Gaussion-Eliminiertation-Method/master/gaussion-elimination.html)
 
 ## Usage
 Enter your Matrix space seperated into the textfield, including the result vector.
 
 Your Matrix must have the form:
-`Ax=B`
-While `A` must be a `n * n` Matrix.
+`Ax=b`
+While `A` must be a `n * n` Matrix and `b` the result vector. 
 The input must have `n+1` columns and `n` rows.
 
 If you want to calculate a matrix like this:
