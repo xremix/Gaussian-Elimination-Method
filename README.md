@@ -32,3 +32,6 @@ a = 5
 b = -6
 c = 3
 ```
+
+
+![Analytics](https://ga-beacon.appspot.com/UA-40522413-9/Gaussian-Elimination-Method/readme?pixel)
