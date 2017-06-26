@@ -2,7 +2,7 @@
 Online Calculator for Matrixes. A website to calculate the result of a matrix based on the Gaussian Elimination Algorithm.
 
 Try the Tool here:
-[Online Tool](https://rawgit.com/xremix/Gaussian-Eliminiertation-Method/master/gaussian-elimination.html)
+[Online Tool](https://rawgit.com/xremix/Gaussian-Elimination-Method/master/gaussian-elimination.html)
 
 ## Usage
 Enter your Matrix space seperated into the textfield, including the result vector.
