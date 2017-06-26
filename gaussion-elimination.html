@@ -58,7 +58,7 @@
 					},
 					writeResult: function(containerid, row){
 						for (var i = 0; i < row.length; i++) {
-							if (row[i]){
+							if (!isNaN(parseFloat(row[i]))){
 								var identifier = String.fromCharCode(97 + i);
 								document.getElementById(containerid).innerText += identifier + ' = ' + row[i] + '\n';	
 							}
