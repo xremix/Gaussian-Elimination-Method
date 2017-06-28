@@ -67,7 +67,7 @@
 						}
 					},
 					stringToMatrix: function(str){
-						var result = str.trim().split('\n');
+						var result = str.trim().replace(/\+/g, "").replace(/\=/g, "").split('\n');
 						for (var i = 0; i < result.length; i++) {
 							result[i] = result[i].split(' ');
 							result[i] = gaussian.tools.cleanArray(result[i]);
