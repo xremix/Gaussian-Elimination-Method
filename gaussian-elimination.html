@@ -62,7 +62,7 @@
 						for (var i = 0; i < row.length; i++) {
 							if (!isNaN(parseFloat(row[i]))){
 								var identifier = String.fromCharCode(97 + i);
-								document.getElementById(containerid).innerText += identifier + ' = ' + row[i] + '\n';	
+								document.getElementById(containerid).innerText += identifier + ' = ' + row[i] + '\n';
 							}
 						}
 					},
@@ -98,6 +98,7 @@
 								mtr[i] = gaussian.calculator.calcRows(mtr[runner], mtr[i], runner);
 							}
 							runner++;
+							advancedOutput && (document.getElementById('result2').innerText += 'Step ' + runner + ':\n');
 							advancedOutput && gaussian.ui.writeMatrix('result2', mtr);
 						}
 						!advancedOutput && gaussian.ui.writeMatrix('result2', mtr);
