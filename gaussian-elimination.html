@@ -22,6 +22,7 @@
 			</div>
 			<div class="col-xs-12">
 				<h3>Matrix in elminiated form</h3>
+				<p><input type="checkbox" id="inputAdvancedOutput"/> 	Steps of calculation</p>
 				<div id="result2" class="jumbotron"></div>
 			</div>
 			<div class="col-xs-12">
@@ -55,6 +56,7 @@
 							}
 							document.getElementById(containerid).innerText += '\n';
 						}
+						document.getElementById(containerid).innerText += '\n';
 					},
 					writeResult: function(containerid, row){
 						for (var i = 0; i < row.length; i++) {
@@ -88,7 +90,7 @@
 						}  
 						return result;
 					},
-					calculateMatrix: function(mtr){
+					calculateMatrix: function(mtr, advancedOutput){
 						gaussian.ui.writeMatrix('result', mtr);
 						var runner = 0;
 						while(runner+1 < mtr.length){
@@ -96,8 +98,9 @@
 								mtr[i] = gaussian.calculator.calcRows(mtr[runner], mtr[i], runner);
 							}
 							runner++;
+							advancedOutput && gaussian.ui.writeMatrix('result2', mtr);
 						}
-						gaussian.ui.writeMatrix('result2', mtr);
+						!advancedOutput && gaussian.ui.writeMatrix('result2', mtr);
 					},
 					resolveMatrixResults: function(mtr){
 						var mtrResults = new Array(mtr[0].length-1);
@@ -126,14 +129,13 @@
 					gaussian.ui.clearContent('result2');
 					gaussian.ui.clearContent('result3');
 					matrix = gaussian.ui.stringToMatrix(document.getElementById("matrixInput").value);
-					gaussian.calculator.calculateMatrix(matrix);
+					gaussian.calculator.calculateMatrix(matrix,  document.getElementById("inputAdvancedOutput").checked);
 					gaussian.calculator.resolveMatrixResults(matrix);
 				}
 			};
 			var matrix = [];
-			document.getElementById('matrixInput').onkeyup = function(){
-				gaussian.calculateWholeMatrix();
-			};
+			document.getElementById('matrixInput').onkeyup = gaussian.calculateWholeMatrix;
+			document.getElementById("inputAdvancedOutput").onchange = gaussian.calculateWholeMatrix;
 			gaussian.calculateWholeMatrix();
 		</script>
 
