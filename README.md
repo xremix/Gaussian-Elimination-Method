@@ -1,5 +1,5 @@
 # Gaussian-Elimination-Method
-Online Calculator for Matrixes. A website to calculate the result of a matrix based on the Gaussian Elimination Algorithm.
+Online Calculator for Matrixes of linear systems. A website to calculate the result of a linear system based on the Gaussian Elimination Algorithm.
 
 Try the Tool here:
 [Online Tool](https://rawgit.com/xremix/Gaussian-Elimination-Method/master/gaussian-elimination.html)
