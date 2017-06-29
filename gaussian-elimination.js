@@ -63,16 +63,18 @@ var gaussian = {
 			var runner = 0;
 			var printedStep = 1;
 			while(runner+1 < mtr.length){
+				advancedOutput && (document.getElementById(outputId).innerText += 'Get Column ' + (runner+1) + ' to 0:\n');
 				for (var i = runner+1; i < mtr.length; i++) {
 					mtr[i] = gaussian.calculator.calcRows(mtr[runner], mtr[i], runner);
-					// advancedOutput && (document.getElementById(outputId).innerText += 'Step ' + printedStep + ':\n');
-					// advancedOutput && gaussian.ui.writeMatrix(outputId, mtr);
-					// printedStep++;
+					advancedOutput && (document.getElementById(outputId).innerText += 'Step ' + printedStep + ':\n');
+					advancedOutput && (document.getElementById(outputId).innerText += 'Substracting row ' + (runner+1) + ' from ' + (i+1) + '\n');
+					advancedOutput && gaussian.ui.writeMatrix(outputId, mtr);
+					printedStep++;
 				}
 				runner++;
-				advancedOutput && (document.getElementById(outputId).innerText += 'Step ' + runner + ':\n');
-				advancedOutput && gaussian.ui.writeMatrix(outputId, mtr);
-				printedStep++;
+				// advancedOutput && (document.getElementById(outputId).innerText += 'Step ' + runner + ':\n');
+				// advancedOutput && gaussian.ui.writeMatrix(outputId, mtr);
+				// printedStep++;
 			}
 			!advancedOutput && gaussian.ui.writeMatrix(outputId, mtr);
 		},
