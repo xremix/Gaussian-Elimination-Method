@@ -59,23 +59,22 @@ var gaussian = {
 			}  
 			return result;
 		},
-		calculateMatrix: function(mtr, advancedOutput){
-			gaussian.ui.writeMatrix('result', mtr);
+		calculateMatrix: function(mtr, outputId, advancedOutput){
 			var runner = 0;
 			var printedStep = 1;
 			while(runner+1 < mtr.length){
 				for (var i = runner+1; i < mtr.length; i++) {
 					mtr[i] = gaussian.calculator.calcRows(mtr[runner], mtr[i], runner);
-					// advancedOutput && (document.getElementById('result2').innerText += 'Step ' + printedStep + ':\n');
-					// advancedOutput && gaussian.ui.writeMatrix('result2', mtr);
+					// advancedOutput && (document.getElementById(outputId).innerText += 'Step ' + printedStep + ':\n');
+					// advancedOutput && gaussian.ui.writeMatrix(outputId, mtr);
 					// printedStep++;
 				}
 				runner++;
-				advancedOutput && (document.getElementById('result2').innerText += 'Step ' + runner + ':\n');
-				advancedOutput && gaussian.ui.writeMatrix('result2', mtr);
+				advancedOutput && (document.getElementById(outputId).innerText += 'Step ' + runner + ':\n');
+				advancedOutput && gaussian.ui.writeMatrix(outputId, mtr);
 				printedStep++;
 			}
-			!advancedOutput && gaussian.ui.writeMatrix('result2', mtr);
+			!advancedOutput && gaussian.ui.writeMatrix(outputId, mtr);
 		},
 		resolveMatrixResults: function(mtr){
 			var mtrResults = new Array(mtr[0].length-1);
@@ -95,20 +94,17 @@ var gaussian = {
 
 				mtrResults[mtrResults.length-i] = (rowResult - additionalValue) / secondValue;
 			}
-			gaussian.ui.writeResult('result3', mtrResults);
 			return mtrResults;
 		}
 	},
-	calculateWholeMatrix: function(){
-		gaussian.ui.clearContent('result');
-		gaussian.ui.clearContent('result2');
-		gaussian.ui.clearContent('result3');
-		matrix = gaussian.ui.stringToMatrix(document.getElementById("matrixInput").value);
-		gaussian.calculator.calculateMatrix(matrix,  document.getElementById("inputAdvancedOutput").checked);
-		gaussian.calculator.resolveMatrixResults(matrix);
+	calculateWholeMatrix: function(containerInputMatrix, containerOriginalMatrix, containerEliminatedMatrix, containerResult, advancedOutput){
+		gaussian.ui.clearContent(containerOriginalMatrix);
+		gaussian.ui.clearContent(containerEliminatedMatrix);
+		gaussian.ui.clearContent(containerResult);
+		matrix = gaussian.ui.stringToMatrix(document.getElementById(containerInputMatrix).value);
+		gaussian.ui.writeMatrix(containerOriginalMatrix, matrix);
+		gaussian.calculator.calculateMatrix(matrix, containerEliminatedMatrix,  advancedOutput);
+		matrix = gaussian.calculator.resolveMatrixResults(matrix);
+		gaussian.ui.writeResult(containerResult, matrix);
 	}
 };
-var matrix = [];
-document.getElementById('matrixInput').onkeyup = gaussian.calculateWholeMatrix;
-document.getElementById("inputAdvancedOutput").onchange = gaussian.calculateWholeMatrix;
-gaussian.calculateWholeMatrix();

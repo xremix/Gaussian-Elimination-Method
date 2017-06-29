@@ -31,5 +31,15 @@
 			</div>
 		</div>
 		<script src="gaussian-elimination.js"></script>
+		<script type="text/javascript">
+			var matrix = [];
+			document.getElementById('matrixInput').onkeyup = function(){
+				gaussian.calculateWholeMatrix('matrixInput', 'result', 'result2', 'result3', document.getElementById("inputAdvancedOutput").checked);
+			};
+			document.getElementById("inputAdvancedOutput").onchange = function(){
+				gaussian.calculateWholeMatrix('matrixInput', 'result', 'result2', 'result3', document.getElementById("inputAdvancedOutput").checked);
+			};
+			gaussian.calculateWholeMatrix('matrixInput', 'result', 'result2', 'result3', document.getElementById("inputAdvancedOutput").checked);
+		</script>
 	</body>
 	</html>
