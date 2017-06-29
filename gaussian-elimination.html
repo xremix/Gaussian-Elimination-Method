@@ -93,13 +93,18 @@
 					calculateMatrix: function(mtr, advancedOutput){
 						gaussian.ui.writeMatrix('result', mtr);
 						var runner = 0;
+						var printedStep = 1;
 						while(runner+1 < mtr.length){
 							for (var i = runner+1; i < mtr.length; i++) {
 								mtr[i] = gaussian.calculator.calcRows(mtr[runner], mtr[i], runner);
+								// advancedOutput && (document.getElementById('result2').innerText += 'Step ' + printedStep + ':\n');
+								// advancedOutput && gaussian.ui.writeMatrix('result2', mtr);
+								// printedStep++;
 							}
 							runner++;
 							advancedOutput && (document.getElementById('result2').innerText += 'Step ' + runner + ':\n');
 							advancedOutput && gaussian.ui.writeMatrix('result2', mtr);
+							printedStep++;
 						}
 						!advancedOutput && gaussian.ui.writeMatrix('result2', mtr);
 					},
