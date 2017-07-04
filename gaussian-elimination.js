@@ -50,6 +50,10 @@ var gaussian = {
 		},
 	},
 	calculator:{
+		validateMatrix: function(mtr){
+			return  mtr != null && mtr != undefined 
+			&& mtr.length+1 == mtr[0].length;
+		},
 		calcRows: function(row1, row2, id){
 			var result = [];
 			for (var i = 0; i < row1.length; i++) {
@@ -104,9 +108,13 @@ var gaussian = {
 		gaussian.ui.clearContent(containerEliminatedMatrix);
 		gaussian.ui.clearContent(containerResult);
 		matrix = gaussian.ui.stringToMatrix(document.getElementById(containerInputMatrix).value);
-		gaussian.ui.writeMatrix(containerOriginalMatrix, matrix);
-		gaussian.calculator.calculateMatrix(matrix, containerEliminatedMatrix,  advancedOutput);
-		matrix = gaussian.calculator.resolveMatrixResults(matrix);
-		gaussian.ui.writeResult(containerResult, matrix);
+		// if(gaussian.calculator.validateMatrix(matrix)){
+			gaussian.ui.writeMatrix(containerOriginalMatrix, matrix);
+			gaussian.calculator.calculateMatrix(matrix, containerEliminatedMatrix,  advancedOutput);
+			matrix = gaussian.calculator.resolveMatrixResults(matrix);
+			gaussian.ui.writeResult(containerResult, matrix);
+		// }else{
+		// 	containerEliminatedMatrix.innerText = "Your Matrix is not in the A|b form. Please check the Docs";
+		// }
 	}
 };
